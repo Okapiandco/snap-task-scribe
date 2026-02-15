@@ -42,13 +42,21 @@ const App = () => {
         <Toaster />
         <Sonner />
         <BrowserRouter>
-          <Routes>
-            <Route path="/auth" element={session ? <Navigate to="/" replace /> : <Auth />} />
-            <Route path="/" element={<ProtectedRoute session={session}><SavedNotes /></ProtectedRoute>} />
-            <Route path="/new" element={<ProtectedRoute session={session}><NewNote /></ProtectedRoute>} />
-            <Route path="/notes/:id" element={<ProtectedRoute session={session}><NoteDetail /></ProtectedRoute>} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <div className="min-h-screen flex flex-col">
+            <div className="flex-1">
+              <Routes>
+                <Route path="/auth" element={session ? <Navigate to="/" replace /> : <Auth />} />
+                <Route path="/" element={<ProtectedRoute session={session}><SavedNotes /></ProtectedRoute>} />
+                <Route path="/new" element={<ProtectedRoute session={session}><NewNote /></ProtectedRoute>} />
+                <Route path="/notes/:id" element={<ProtectedRoute session={session}><NoteDetail /></ProtectedRoute>} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </div>
+            <footer className="py-4 text-center text-sm text-muted-foreground border-t space-y-1">
+              <p>&copy; 2026 Okapi and Co (South) Limited. All rights reserved.</p>
+              <p>For more information contact <a href="mailto:jim@okapiandco.co.uk" className="underline hover:text-foreground">jim@okapiandco.co.uk</a></p>
+            </footer>
+          </div>
         </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>
